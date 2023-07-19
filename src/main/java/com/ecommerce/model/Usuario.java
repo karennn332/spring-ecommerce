@@ -11,7 +11,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +36,7 @@ public class Usuario {
 	
 	
 	public Usuario(Integer id, String nombre, String username, String email, String direccion, String telefono,
-			String tipo, String password, List<Producto> productos, List<Orden> ordenes) {
+			String tipo, String password) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -47,8 +46,7 @@ public class Usuario {
 		this.telefono = telefono;
 		this.tipo = tipo;
 		this.password = password;
-		this.productos = productos;
-		this.ordenes = ordenes;
+		
 	}
 
 
