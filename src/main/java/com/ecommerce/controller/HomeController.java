@@ -123,4 +123,9 @@ sumaTotal=detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
 		model.addAttribute("orden", orden);
 		return "/usuario/carrito";
 	}
+	
+	@GetMapping("/order")
+	public String order() {
+		return "usuario/resumenorden";
+	}
 }
