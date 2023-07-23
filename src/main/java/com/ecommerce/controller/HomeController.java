@@ -1,6 +1,7 @@
 package com.ecommerce.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,5 +81,34 @@ public class HomeController {
 		
 		
 		return "usuario/carrito";
+	}
+	
+	//Quitar un producto del carrito
+	@GetMapping("/delete/cart/{id}")
+	public String deleteProductoCart(@PathVariable Integer id, Model model) {
+		
+		//Lista nueva de productos
+		List<DetalleOrden> ordenesNueva= new ArrayList<DetalleOrden>();
+		
+		for(DetalleOrden detalleOrden: detalles) {
+			if (detalleOrden.getProducto().getId()!=id) {
+				ordenesNueva.add(detalleOrden);
+			}
+		}
+		
+		//poner la nueva lista con los productos restantes
+		detalles=ordenesNueva;
+		
+		double sumaTotal=0;
+sumaTotal=detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
+		
+		orden.setTotal(sumaTotal);
+		model.addAttribute("cart",detalles);
+		model.addAttribute("orden", orden);
+		
+		return "usuario/carrito";
+	
+			
+		
 	}
 }
