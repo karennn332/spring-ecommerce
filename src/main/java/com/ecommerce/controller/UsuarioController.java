@@ -93,9 +93,16 @@ public class UsuarioController {
 		Optional<Orden>  orden= ordenService.findById(id);
 		
 		model.addAttribute("detalles", orden.get().getDetalle());
+		
 		 //session
 		 model.addAttribute("sesion", session.getAttribute("idusuario"));
 		 
 		 return "usuario/detallecompra";
+	 }
+	 
+	 @GetMapping("/cerrar")
+	 public String cerrarSesion(HttpSession session) {
+		 session.removeAttribute("idusuario");
+		 return "redirect:/";
 	 }
 }
