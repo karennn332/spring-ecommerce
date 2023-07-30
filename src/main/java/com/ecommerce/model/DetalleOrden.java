@@ -79,6 +79,8 @@ public class DetalleOrden {
 
 	
 	
+	
+
 	public Orden getOrden() {
 		return orden;
 	}
